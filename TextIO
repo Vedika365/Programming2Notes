@@ -1,0 +1,180 @@
+package org.example;
+
+
+import com.sun.security.jgss.GSSUtil;
+import org.example.park.*;
+import org.example.petstore.Animal;
+import org.example.petstore.Cat;
+import org.example.petstore.Dog;
+import org.example.petstore.PetStore;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String filePath = "src/main/resources/data2.txt";
+
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("aaa",19,"male"));
+        students.add(new Student("bbb",29,"female"));
+        students.add(new Student("ccc",39,"male"));
+        students.add(new Student("ddd",49,"female"));
+        students.add(new Student("eeee",59,"male"));
+
+
+
+        writeToFile(filePath, students);
+    }
+
+    public static ArrayList<Student> loadStudents(String path) {
+        File file = new File(path);
+
+        ArrayList<Student> students = new ArrayList<>();
+        // try with resources
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                String[] elements = line.split(",");
+                String name = elements[0];
+                int age = Integer.parseInt(elements[1]);
+                String gender = elements[2];
+                students.add(new Student(name, age, gender));
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return students;
+    }
+
+    public static void writeToFile(String path, ArrayList<Student> studnets) {
+        File file = new File(path);
+
+        try (FileWriter fileWriter = new FileWriter(file, true)) {
+            for (Student student : studnets) {
+                fileWriter.write(student.getName() + ",");
+                fileWriter.write(student.getAge() + ",");
+                fileWriter.write(student.getGender() + "\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public static void divide(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                System.out.println("warning: 100 / 0");
+            } else {
+                System.out.println(100 / nums[i]);
+            }
+        }
+
+        System.out.println("hahaha");
+    }
+
+    public static double sum(double[] nums) {
+//        if (nums == null) {
+//            return 0;
+//        }
+
+        double sum = 0;
+
+        for (double num : nums) {
+            sum += num;
+        }
+
+        return sum;
+    }
+
+    public static double average(double[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        return sum(nums) / nums.length;
+    }
+
+    public static double min(double[] nums) {
+        if (nums == null || nums.length == 0) {
+            return Double.NaN;
+        }
+
+        double min = Double.MAX_VALUE;      // nums[0]
+
+        for (double num : nums) {
+            if (num < min) {
+                min = num;
+            }
+            min = Math.min(num, min);
+        }
+
+        return min;
+    }
+
+    /**
+     * 7
+     *
+     * 1 2 3
+     * 4
+     * 5 6
+     *
+     * @param numss
+     * @return
+     */
+    public static double[] calMinRow(double[][] numss) {
+        if (numss == null) {
+            return null;
+        }
+
+        double[] mins = new double[numss.length];
+        Arrays.fill(mins, Double.MAX_VALUE);
+
+        for (int i = 0; i < numss.length; i++) {
+            mins[i] = min(numss[i]);
+        }
+
+        return mins;
+    }
+
+    /**
+     * 7
+     *
+     * 1 2 3
+     * 4
+     * 5 6
+     *
+     * @param numss
+     * @return
+     */
+    public static double[] calcMinCol(double[][] numss) {
+        int col = 0;
+
+        for (double[] nums : numss) {
+            if (col < nums.length) {
+                col = nums.length;
+            }
+        }
+
+        double[] mins = new double[col];
+        Arrays.fill(mins, Double.MAX_VALUE);
+
+        for (double[] nums : numss) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] < mins[j]) {
+                    mins[j] = nums[j];
+                }
+            }
+        }
+
+        return mins;
+    }
+}
