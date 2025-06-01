@@ -1,0 +1,91 @@
+# 8.1 Sorting
+
+## 1. Introduction
+
+Sorting algorithms are essential tools in computer science for organizing data. In this tutorial, weâ€™ll cover the most common sorting algorithms:
+
+- Bubble Sort
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Quick Sort
+
+## 2. Bubble Sorting
+
+Idea:
+Repeatedly swap adjacent elements if they are in the wrong order.
+Largest values â€œbubble upâ€ to the end.
+
+``` java
+public static void bubbleSort(int[] nums) {
+    for (int i = 0; i < nums.length - 1; i++) {
+        for (int j = 0; j < nums.length - 1 - i; j++) {
+            if (nums[j] > nums[j + 1]) {
+                // swap nums[j] and nums[j + 1]
+                int temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            }
+        }    
+    }
+}
+```
+
+The time complexity is `O(n^2)`.
+
+## 3. Selection Sorting
+
+Idea:
+Find the smallest element and put it at the beginning.
+Repeat for the rest of the array.
+
+``` java
+public static void selectionSort(int[] nums) {
+    int len = nums.length;
+
+    for (int i = 0; i < len - 1; i++) {
+        int minIndex = i;
+        
+        // Find the minimum in the unsorted part
+        for (int j = i + 1; j < len; j++) {
+            if (nums[j] < nums[minIndex]) {
+                minIndex = j;
+            }
+        }
+        
+        // Swap minimum with the first unsorted element
+        int temp = nums[minIndex];
+        nums[minIndex] = nums[i];
+        nums[i] = temp;
+    }
+}
+
+```
+
+The time complexity is `O(n^2)`.
+
+## 4. Insertion Sort
+
+Idea:
+Build the sorted array one item at a time by inserting elements at the correct position.
+
+``` java
+public static void insertionSort(int[] nums) {
+    int len = nums.length;
+
+    for (int i = 1; i < len; i++) {
+        int key = nums[i];
+        int j = i - 1;
+
+        // Move elements greater than key to one position ahead
+        while (j >= 0 && nums[j] > key) {
+            nums[j + 1] = nums[j];
+            j--;
+        }
+
+        nums[j + 1] = key;
+    }
+}
+```
+
+The time complexity is `O(n^2)`.
