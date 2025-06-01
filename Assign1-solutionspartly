@@ -1,0 +1,102 @@
+package org.example;
+
+import java.util.Arrays;
+
+public class Main2 {
+    public static double sum(double[] nums) {
+//        if (nums == null) {
+//            return 0;
+//        }
+
+        double sum = 0;
+
+        for (double num : nums) {
+            sum += num;
+        }
+
+        return sum;
+    }
+
+    public static double average(double[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        return sum(nums) / nums.length;
+    }
+
+    public static double min(double[] nums) {
+        if (nums == null || nums.length == 0) {
+            return Double.NaN;
+        }
+
+        double min = Double.MAX_VALUE;      // nums[0]
+
+        for (double num : nums) {
+            if (num < min) {
+                min = num;
+            }
+            min = Math.min(num, min);
+        }
+
+        return min;
+    }
+
+    /**
+     * 7
+     *
+     * 1 2 3
+     * 4
+     * 5 6
+     *
+     * @param numss
+     * @return
+     */
+    public static double[] calMinRow(double[][] numss) {
+        if (numss == null) {
+            return null;
+        }
+
+        double[] mins = new double[numss.length];
+        Arrays.fill(mins, Double.MAX_VALUE);
+
+        for (int i = 0; i < numss.length; i++) {
+            mins[i] = min(numss[i]);
+        }
+
+        return mins;
+    }
+
+    /**
+     * 7
+     *
+     * 1 2 3
+     * 4
+     * 5 6
+     *
+     * @param numss
+     * @return
+     */
+    public static double[] calcMinCol(double[][] numss) {
+        int col = 0;
+
+        for (double[] nums : numss) {
+            if (col < nums.length) {
+                col = nums.length;
+            }
+        }
+
+        double[] mins = new double[col];
+        Arrays.fill(mins, Double.MAX_VALUE);
+
+        for (double[] nums : numss) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] < mins[j]) {
+                    mins[j] = nums[j];
+                }
+            }
+        }
+
+        return mins;
+    }
+}
