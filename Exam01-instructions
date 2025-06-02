@@ -1,0 +1,154 @@
+# Exam01-Example
+
+Submission: Please submit 7 java files one by one, i.e.: 
+1. Main.java
+2. User.java
+3. Student.java
+4. Teacher.java
+5. Course.java
+
+Theory is answered direclty in the comment at the very beginning of your `Main` class.
+
+## Theory
+
+### 1. True or False (Write T of F for each question) (2 point X 5)
+
+1. To print elements in a 2D integer array, statement `sout(Arrays.toString())` can be used.
+2. A method with default access modifier can be accessed by its subclasses regardless of their locations.
+3. A class is capable of implementing multiple interfaces.
+4. Enhanced for loops can be directly used on String objects.
+5. The `throws` keyword is used to trigger an exception.
+
+### 2. Multiple Choice (2 point X 5)
+
+1. Assuming we have a super class `Animal`, and a subclass `Cat`, the statement `Animal a = new Cat()` demonstrates ___
+   
+   A. upper casting
+
+   B. down casting
+
+   C. overload
+
+   D. override
+
+2. Which of the following is prohibited within an interface? ___
+
+   A. data members (fields)
+
+   B. constants
+
+   C. abstract methods (methods without body)
+
+   D. concrete methods (methods with body)
+
+3. Which of the following methods returns no value (is a `void` method)? __
+   
+   A. `Arrays.toString()`
+
+   B. `Arrays.copyOf()`
+
+   C. `Arrays.sort()`
+
+   D. `Arrays.equals()`
+
+4. What action is NOT performed by a default exception handler?
+
+   A. print exception name
+
+   B. print exception message
+
+   C. print exception trace
+
+   D. print exception protential solution
+
+5. If we have a five-dimensional integer array `int[][][][][] array`, and `array[i][j][k]` is valid, what is the data type of `array[i][j][k]`?
+
+   A. 3D int array
+
+   B. 2D int array
+
+   C. 1D int array
+
+   D. int
+
+### 3. Filling the Blank (2 point X 5)
+
+1. A class without explict using keyword `extends` extends from ___.
+2. To call a method in the partent class, we need to use keyword ___.
+3. `ArrayList<Integer> nums = new ArrayList<>(100);`, the number 100 here indicates the ___ of the arraylist.
+4. the file format `csv` stands for ___ 
+5. In Java, both Error and Exception extends from ___
+
+## Coding
+
+### Static (10 point x 2) 
+
+1. Create a static method `insert()` that accepts a `double` array and a `double` value, and insert the value at the beginning of the array. (e.g.: {1,2,3}, 9 -> {9,1,2,3}) (`System.arraycopy()` is not allowed)
+2. Develop a static method `merge()` that takes two `Double` ArrayLists, the method will create a new arraylist, add all elements that are not negative into the new arraylist. (e.g.: {-1,0,1}, {-4,-2,5,8} -> {0,1,5,8}) (Note: elements in ArrayList<Double> could be `null`)
+
+### Project (50 points)
+
+# Task Management System Design
+
+1.  **Develop an abstract `Task` base class with the following attributes:**
+    * `id` (integer)
+    * `name` (string)
+    * `expectedAmountOfDay` (integer, representing the estimated days to complete)
+    * Default (no-argument) constructor
+    * Parameterized (all-arguments) constructor
+    * Abstract `void process()` method.
+    * `equals()` method for object equality comparison.
+    * `toString()` method for a string representation of the task.
+    * Getter and setter methods for all attributes.
+    * Implementation of a `Comparator`, which dynamically sorts tasks based on a `type` field:
+        * If `type` is "name" (case-insensitive), sort tasks alphabetically by `name`.
+        * If `type` is "expected" (case-insensitive), sort tasks in ascending order by `expectedAmountOfDay`.
+        * If `type` is neither, sort tasks by `id` (default behavior).
+
+2.  **Create a `CodingTask` subclass that inherits from `Task` and includes:**
+    * `length` (integer, representing the number of lines of code)
+    * `language` (string, specifying the programming language, e.g., Java, Python, C++)
+    * Default (no-argument) constructor.
+    * Parameterized (all-arguments) constructor.
+    * Implementation of the `void process()` method, which outputs a message similar to:
+        ```
+        Processing...
+        100 lines of Java code
+        ```
+    * `equals()` method for object equality comparison.
+    * `toString()` method (must use toString in the super class).
+    * Getter and setter methods for all attributes.
+
+3.  **Construct a `DocumentationTask` subclass that extends `Task` and contains:**
+    * `page` (integer, representing the total number of pages)
+    * `documentType` (string, specifying the document type)
+    * Default (no-argument) constructor.
+    * Parameterized (all-arguments) constructor.
+    * Implementation of the `void process()` method, which outputs a message like:
+        ```
+        Processing...
+        100 pages of markdown document
+        ```
+    * `equals()` method for object equality comparison.
+    * `toString()` method for a string representation of the documentation task.
+    * Getter and setter methods for all attributes.
+    * Implementation of the `Printable` interface, which calculates the printing cost based on the number of pages and printer type:
+        * For color printing, the first 20 pages cost $0.30 each, and subsequent pages cost $0.15 each.
+        * For black and white printing, the first 20 pages cost $0.10 each, and subsequent pages cost $0.075 each.
+
+4.  **Define a `Printable` interface with the following abstract method:**
+    * `double calcPrice(boolean isColor)` (where `true` indicates color printing, and `false` indicates black and white).
+
+5.  **Develop a `TaskManager` class that manages a collection of `Task` objects, including:**
+    * `tasks` (dynamically sized list of `Task` objects)
+    * Default (no-argument) constructor.
+    * Parameterized (all-arguments) constructor.
+    * `export()` method, which overwrites the specified CSV file (`allTasks.csv`) in the `resources` folder with data for all tasks.
+    * `export(type)` method, which overwrites the CSV file in the `resources` folder with specific task data:
+        * If `type` is `"c"` (case-insensitive), export all `CodingTask` objects, and the file name is `codingTasks.csv`
+        * If `type` is `"d"` (case-insensitive), export all `DocumentationTask` objects, and the file name is `documentationTasks.csv`
+        * Otherwise, export all `Task` objects.
+        * Hint: you can create private helpers (e.g.: `exportCodeTask()`, `exportDocumentationTask()`) to support this method, and the file name is `allTasks.csv`
+    * `equals()` method for object equality comparison.
+    * `toString()` method for a string representation of the task manager.
+    * Getter and setter methods for all attributes.
