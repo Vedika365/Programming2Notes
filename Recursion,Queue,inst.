@@ -1,0 +1,43 @@
+# DataStructuresAndOOP - Assignment03
+
+## **Due Date:** 
+
+04-04 23:57:00
+
+## **Submission:**
+
+**Please submit one Main.java files in total. Do not zip your files**.
+
+**Full Score**: 100
+
+## Key Concepts for This Assignment
+
+1. Recursion
+2. Queue
+3. Stack
+
+## Task 1: Recursion
+
+Directly write the following methods in the Main.java file
+
+### Requirements:
+
+1. Write a method `isSorted(List<Integer> nums)` to check if `nums` is assendingly sorted or not. The method must use recursion.
+2. Write a method `countChar(String str, char c)` to count the number of appearance of `c` in `str`, (case-sensitive). The method must use recursion.
+
+## Task 2: Stack
+
+### Description:
+
+Directly write the following methods in the Main.java file
+
+### Requirements:
+1. Write a method `reverse(String str)` to reverse a string. The method must use stack, e.g.: `"hello"` -> `"olleh"` (Hint: create a stack, push all characters into the stack, then pop them out and add them to a new string)
+2. Write a method `isBalanced(String str)` to check if a string of parentheses are balanced of not. The method must use stack, e.g.: `"({[]})"` → `true`, `(((())))`  -> `true`,  
+`{}[()]` -> `true`, `{[}]` -> `false`, (Hint: push left parenthese into a stack, and pop one out when see there is a right parenthese and see if the right parenthese can be paired with the poped left parenthese)
+
+## Task 3: Queue
+
+Directly write the following methods in the Main.java file
+
+1. Write a method `interleaveQueue(Queue<Integer> queue)`. Given an even-sized queue, the method rearranges it such that the first half is interleaved with the second, e.g.: Input:  `[1, 2, 3, 4, 5, 6]` -> `[1, 4, 2, 5, 3, 6]`
