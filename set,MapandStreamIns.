@@ -1,0 +1,50 @@
+# DataStructuresAndOOP - Assignment04
+
+## **Due Date:** 
+
+04-17 23:57:00
+
+## **Submission:**
+
+**Please submit one Main.java files in total. Do not zip your files**.
+
+**Full Score**: 100
+
+## Key Concepts for This Assignment
+
+1. Set
+2. Map
+3. Lambda expression
+4. Stream
+5. Unit testing
+
+IMPORTANT: ALL EIGHT METHODS IN THIS ASSIGNMENT MUST BE TESTED BY USING JUNIT TEST!
+
+## Task 1: Set
+
+Directly write the following methods in the Main.java file
+
+### Requirements:
+
+1. Write a method `union` that takes two sets, and returns their union, e.g.: {1, 2, 3, 4} and {3, 4, 5, 6} -> {1, 2, 3, 4, 5, 6}
+2. Write a method `intersect` that takes two sets, and returns their intersection, e.g.: {1, 2, 3, 4} and {3, 4, 5, 6} -> {3, 4}
+3. Write a method `differ` that takes two sets, and returns their difference (set1 - set2), e.g.: {1, 2, 3, 4} and {3, 4, 5, 6} -> {1, 2}
+
+## Task 2: Map
+
+### Description:
+
+Directly write the following methods in the Main.java file
+
+### Requirements:
+1. Write a method `groupWords(String[] strs)` to reverse an array of strings. The method will check the first character of each string and then group strings based on its first character, the result is sorted based on the first character alphabetically e.g.: `["hi", "how", "are", "you", "apple", "banana"]` -> `['a': ["are", "apple"], 'b': ["banana"], 'h': ["hi", "how"], 'y': ["you]]`
+2. Write a method `groupItemsByCategory(List<Item> items)` that receives a list of items (Create the `Item` class as an inner class that contains `name`, `category`, and `price`), group items based on their categories. 
+3. Write a method `calcAveragePrice(Map<String, List<Item>>)` that takes the result of the previous method and calculate the average price for each category, the result should be a map. 
+
+## Task 3: Lambda expression and Stream
+
+Directly write the following methods in the Main.java file
+
+1. Write a method `toTitlecaseList(List<String> strs)` that takes a list of strings, convert the list to titlecase (XxxxXxxx, such as `YiWang`), e.g.: `{"yi wang", "vanier college", "COMPUTER SCIENCE"}` -> `{"YiWang", "VanierCollege", "ComputerScience"}`. Assument every string contains a space to between two words.
+
+2. Write a method `findUserNameForSpecificDomain(List<String> emails, String domainKeyword)` that takes a list of email addresses and a domain, find the username (before `@`) of all email addresses that contains the keyword in their domains and sort the result alphabetically, e.g.: `{"yiwang@vanier.college", "alice@vanier.college", "bob@gmail.com", "charlie@vanier.college", }` and `"vanier"` -> `{alice, charlie, yiwang}`.
